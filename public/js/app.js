@@ -17,11 +17,18 @@ jewelApp.config(function ($stateProvider) {
     name: 'shipping',
     url: '/shipping',
     component: 'shipping'
-
   }
+
+  let shippingOptions = {
+    name: 'shippingOptions',
+    url: '/shippingOptions',
+    component: 'shippingOptions'
+  }
+
   $stateProvider.state(mainState);
   $stateProvider.state(cartState);
   $stateProvider.state(shippingState);
+  $stateProvider.state(shippingOptions);
 });
 
 jewelApp.controller('mainController', [

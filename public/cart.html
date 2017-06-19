@@ -19,6 +19,7 @@
 					});
 				});
 			</script>
+
 			<div class="cart-header">
 				<div class="close1"> </div>
 				<div class="cart-sec simpleCart_shelfItem" ng-repeat="item in cart.items">
@@ -38,12 +39,62 @@
 						<div class="delivery">
 							<p>Service Charges : $10.00</p>
 							<span>Delivered in 1-1:30 hours</span>
+							<br>
+							<p ng-if="$ctrl.shippingOption">Selected Shipping Charges : ${{$ctrl.shippingOption.price.total}}</p>
 							<div class="clearfix"></div>
 						</div>
 						<br>
-						<p><a href="#!/shipping" class="btn btn-info">Calculate Shipping</a></p>
+						<p ng-if="!$ctrl.shippingOption"><a href="#!/shipping" class="btn btn-info">Calculate Shipping</a></p>
+						<!--<div id="paypal-button-container"></div>-->
+						<p>
+							<div id="paypal-button-container"></div>
+							<button ng-hide="true" id="paypalBtn1" ng-click="vm.checkout()"></div>
+						<script>
+
+							let alFun = function () {
+								alert('Muhaha');
+							}
+
+							let drawButton = function () {
+								$('#paypalBtn1').click();
+							}
+
+							let finalTimeoutFunc = function () {
+								setTimeout(drawButton, 1500);
+							}
+
+
+							let x = 0; let buttonDrawn = false;
+							let fixInterval = function () {
+								const intervalId = setInterval(function () {
+									let elem = document.getElementById('paypal-button-container');
+
+									if (elem && !buttonDrawn) {
+										console.log('going to draw the button');
+										drawButton();
+										window.clearInterval(intervalId);
+									} else {
+										console.warn('Still id not found');
+									}
+
+									if (++x === 5) {
+										window.clearInterval(intervalId);
+										console.error('Payment button not drawn');
+									}
+								}, 500);
+							}
+
+							fixInterval();
+
+						// finalTimeoutFunc();
+
+						</script>
+							
+
+						</p>
 					</div>
 					<div class="clearfix"></div>
+					
 
 				</div>
 			</div>
