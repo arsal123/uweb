@@ -4,6 +4,7 @@ var app     = express();
 var colors = require("colors");
 var httpProxy = require('http-proxy');
 var bodyParser = require('body-parser');
+const ShippingContr = require('./app/controllers/shippingController');
 
 var apiProxy = httpProxy.createProxyServer();
 const serverOne = 'http://localhost:3150';
@@ -30,13 +31,7 @@ app.all('/db/*', function(req, res){
   apiProxy.web(req, res, {target: serverOne});
 });
 
-// app.get('/about',function(req,res){
-//   res.sendFile(path.join(__dirname+'/about.html'));
-// });
-
-// app.get('/sitemap',function(req,res){
-//   res.sendFile(path.join(__dirname+'/sitemap.html'));
-// });
+app.get('/shipping-calc', ShippingContr.getRates);
 
 app.listen(3000);
 
