@@ -16,7 +16,6 @@ angular.module('jewel')
         // }
 
         return {
-
             setItems: function (inputItems) {
                 items = inputItems;
                 console.debug(CART_SER + items.length)
@@ -33,7 +32,6 @@ angular.module('jewel')
                 return shippingOption;
             }
 
-
-        }
+      ]  }
 
     })
