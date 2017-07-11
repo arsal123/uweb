@@ -12,7 +12,7 @@
             // Create a PayPal app: https://developer.paypal.com/developer/applications/create
             client: {
                 sandbox: 'Ac0jN0nTDSLOrFp7L12FgcazcVLh4OJxdgg56kLuLu15imqwH_HivAoTJtGEC8S-SnXtuvbo3_A4Rk6a',
-
+                // sandbox: 'Ac0jN0nTDSLOrFp7L12FgcazcVLh4OJxdgg56kLuLu15imqwH_HivAoTJtGEC8S-SnXtuvbo3_A4Rk6a:EKJ-xIY--cpPnvlWLEkCOv1fWbBultorxsGuBIn9IQFQlievzGMCKGHvfXi8jbEErDArQ9flGkDFP-uS',
                 production: 'ASqd9sOZJLboO-kJW1d8oOjnaGB3s19LkfZoDRKOaVN91D8aCtFQGo5iw3m2MwDVA5J1Qhtl-tk6H3OY'
             },
 
