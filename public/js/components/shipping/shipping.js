@@ -9,6 +9,7 @@
         cntrl.calculateShipping = function () {
             console.info(SHIPPING_CONTROLLER + 'Calculating shipping');
             // Put logic here for now
+            // Weight will be entered in grams - need to convert to Kg at backend later
             $http.get(LOCAL_SERVICE + 'shipping-calc?weight=1&dcode=H9B1L5')
                 .then(function (res) {
                     $log.info(JSON.stringify(res.data));       
