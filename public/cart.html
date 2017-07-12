@@ -27,7 +27,8 @@
 						<img ng-src="{{item.img_path}}" class="img-responsive" alt="">
 					</div>
 					<div class="cart-item-info">
-						<h3><a href="#!/cart"> {{item.name}} </a><span>Pickup time:</span></h3>
+						<h3><a href="#!/cart"> {{item.name}} </a>
+						</h3>
 						<ul class="qty">
 							<li>
 								<p>Min. order value:</p>
@@ -37,8 +38,11 @@
 							</li>
 						</ul>
 						<div class="delivery">
-							<p>Service Charges : $10.00</p>
-							<span>Delivered in 1-1:30 hours</span>
+							<p>Price : ${{item.price*item.quantity}}</p>
+							<span>Quantity: 
+							<input id="quantity1" type="text" ng-model="item.quantity" class="cart-quantity"> 
+							<button ng-click="$ctrl.updateQuantity()" class="btn">Update Quantity</button>
+							</span>
 							<br>
 							<p ng-if="$ctrl.shippingOption">Selected Shipping Charges : ${{$ctrl.shippingOption.price.total}}</p>
 							<div class="clearfix"></div>
