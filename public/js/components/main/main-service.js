@@ -8,7 +8,7 @@
             '$log',
             function($http, $q, $log) {
                 let _this = this;
-                const BASE_URL = 'http://ec2-13-58-6-10.us-east-2.compute.amazonaws.com:3000/db/';
+                const BASE_URL = 'http://' + window.location.host + '/db/';
 
                 _this.getCategories = function(){
                     return $http({

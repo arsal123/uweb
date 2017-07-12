@@ -6,15 +6,6 @@ angular.module('jewel')
 
         const CART_SER = 'CART-SERVICE: ';
 
-        // this.setItems = function(inputItems){
-        //     items = inputItems;
-        //     console.debug(CHECKOUT_SER+items.length)        
-        // }
-        // this.getItems = function(){
-        //     console.debug(CHECKOUT_SER+items.length) 
-        //     return items;
-        // }
-
         return {
             setItems: function (inputItems) {
                 items = inputItems;
