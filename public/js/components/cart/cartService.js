@@ -32,6 +32,6 @@ angular.module('jewel')
                 return shippingOption;
             }
 
-      ]  }
+        }
 
     })
