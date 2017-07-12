@@ -35,9 +35,13 @@ jewelApp.controller('appController', [
   '$scope',
   function($scope){
     $scope.number = $scope.number ? $scope.number : 0;
-    $scope.updateNum = function(num){
-      console.log('Updating number to '+num);
-      $scope.number = num;
+    $scope.updateNum = function(items){
+      var total = 0;
+      items.forEach(function(item) {
+        total += item.quantity;
+      });
+      console.log('Updating number to ' + total);
+      $scope.number = total;
     }
   }]);
 
@@ -69,9 +73,9 @@ jewelApp.controller('mainController', [
 
     $scope.checkout.addToCart = function (item) {
       console.debug("Cart Item to Add: " + JSON.stringify(item));
-      cartService.setItems([item]);
+      cartService.addItem(item);
       
-      $scope.$parent.updateNum(cartService.getItems().length);
+      $scope.$parent.updateNum(cartService.getItems());
       console.debug(MAIN_CONTR + "Parent number: " + $scope.$parent.number);
     }
   }]);

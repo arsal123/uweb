@@ -78,12 +78,6 @@
         });
         
     }
-    // ctrl.cartService = cartService;
-    // console.info(CART_CONTROLLER + 'Runing through it. Total items: ' + ($scope.cart.items ? $scope.cart.items.length : 0))
-    // $scope.$root.cart = {
-    //     items: $scope.cart.items
-    // };
-    // $scope.vm.checkout();
 }
 
 angular.module('jewel').component('cart', {
