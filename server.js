@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 const ShippingContr = require('./app/controllers/shippingController');
 
 var apiProxy = httpProxy.createProxyServer();
-const serverOne = 'http://localhost:3150';
+const serverOne = 'http://13.58.6.10:3150';
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/prod-imgs'));
