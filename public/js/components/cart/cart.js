@@ -84,7 +84,7 @@
     //     items: $scope.cart.items
     // };
     // $scope.vm.checkout();
-]}
+}
 
 angular.module('jewel').component('cart', {
     templateUrl: 'cart.html',
