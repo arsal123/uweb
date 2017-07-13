@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict'
 
-    function shippingOptionsController($scope, $http, $state, $log, cartService) {
+    function shippingOptionsController($scope, $http, $state, $log, prMainCartService) {
         const SHIPPING_CONTROLLER = 'SHIPPING_CONTROLLER: ';
         const LOCAL_SERVICE = 'http://localhost:3000/';
         let ctrl = this;
@@ -25,7 +25,7 @@
         ctrl.addShipping = function(){
             console.info('Selected option: '+ctrl.selOption);
             if(ctrl.selOption){
-                cartService.setShippingOption(JSON.parse(ctrl.selOption));
+                prMainCartService.setShippingOption(JSON.parse(ctrl.selOption));
                 $state.go('cart');
             }
             }

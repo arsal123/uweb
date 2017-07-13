@@ -33,11 +33,21 @@ jewelApp.config(function ($stateProvider) {
 
 jewelApp.controller('appController', [
   '$scope',
-  function($scope){
+  'prMainCartService',
+  function($scope, cartService){
     $scope.number = $scope.number ? $scope.number : 0;
-    $scope.updateNum = function(num){
-      console.log('Updating number to '+num);
-      $scope.number = num;
+    $scope.vm = {};
+    $scope.updateNum = function(items){
+      var total = 0;
+      items.forEach(function(item) {
+        total += parseInt(item.quantity, 10);
+      });
+      console.log('Updating number to ' + total);
+      $scope.number = total;
+    }
+    $scope.vm.emptyCart = () => {
+      cartService.emptyItems();
+      $scope.number = 0;
     }
   }]);
 
@@ -45,7 +55,7 @@ jewelApp.controller('appController', [
 jewelApp.controller('mainController', [
   '$scope',
   'prMainService',
-  'cartService',
+  'prMainCartService',
   function ($scope, mainSvc, cartService) {
     let MAIN_CONTR = "MAIN-CONROLLER: ";
 
@@ -69,9 +79,9 @@ jewelApp.controller('mainController', [
 
     $scope.checkout.addToCart = function (item) {
       console.debug("Cart Item to Add: " + JSON.stringify(item));
-      cartService.setItems([item]);
+      cartService.addItem(item);
       
-      $scope.$parent.updateNum(cartService.getItems().length);
+      $scope.$parent.updateNum(cartService.getItems());
       console.debug(MAIN_CONTR + "Parent number: " + $scope.$parent.number);
     }
   }]);

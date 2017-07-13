@@ -1,5 +1,5 @@
 (function(angular){
-    function cartController($scope, $http, $log, cartService) {
+    function cartController($scope, $http, $log, prMainCartService) {
     const logPrefix = 'CART_CONTROLLER: ';
 
     let ctrl = this;
@@ -50,10 +50,13 @@
     }
     $scope.vm={}
     $scope.cart = {}
-    $scope.cart.items = cartService.getItems();
-    ctrl.shippingOption = cartService.getShippingOption();
-    
+    $scope.cart.items = prMainCartService.items;
+    ctrl.shippingOption = prMainCartService.getShippingOption();
     ctrl.shippingOption && $log.debug(ctrl.shippingOption.price.total);
+    ctrl.updateQuantity = () => {
+        $log.debug(logPrefix + 'updateQuantity(): ');
+        $scope.$parent.updateNum(prMainCartService.getItems());
+    }
 
 
     $scope.vm.checkout=function(){
@@ -78,16 +81,10 @@
         });
         
     }
-    // ctrl.cartService = cartService;
-    // console.info(CART_CONTROLLER + 'Runing through it. Total items: ' + ($scope.cart.items ? $scope.cart.items.length : 0))
-    // $scope.$root.cart = {
-    //     items: $scope.cart.items
-    // };
-    // $scope.vm.checkout();
 }
 
 angular.module('jewel').component('cart', {
-    templateUrl: 'cart.html',
+    templateUrl: 'components/cart/cart.html',
     controller: cartController
 
 })})(window.angular)

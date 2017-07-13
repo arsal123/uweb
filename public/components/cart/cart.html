@@ -4,7 +4,7 @@
 	</div>
 </div>
 <!--banner-->
-
+<link rel="stylesheet" href="components/cart/cart.css" type="text/css" media="screen" charset="utf-8" />
 <!--content-->
 <div class="content">
 	<div class="cart-items">
@@ -27,7 +27,8 @@
 						<img ng-src="{{item.img_path}}" class="img-responsive" alt="">
 					</div>
 					<div class="cart-item-info">
-						<h3><a href="#!/cart"> {{item.name}} </a><span>Pickup time:</span></h3>
+						<h3><a href="#!/cart"> {{item.name}} </a>
+						</h3>
 						<ul class="qty">
 							<li>
 								<p>Min. order value:</p>
@@ -37,14 +38,17 @@
 							</li>
 						</ul>
 						<div class="delivery">
-							<p>Service Charges : $10.00</p>
-							<span>Delivered in 1-1:30 hours</span>
+							<p class="price-line">Price : ${{item.price*item.quantity}}</p>
+							<span class="price-line">Quantity: 
+							<input id="quantity1" type="text" ng-model="item.quantity" class="cart-quantity" ng-blur="$ctrl.updateQuantity()"> 
+							<!-- <button ng-click="$ctrl.updateQuantity(item)" class="quantity">Update Quantity</button> -->
+							</span>
 							<br>
 							<p ng-if="$ctrl.shippingOption">Selected Shipping Charges : ${{$ctrl.shippingOption.price.total}}</p>
 							<div class="clearfix"></div>
 						</div>
 						<br>
-						<p ng-if="!$ctrl.shippingOption"><a href="#!/shipping" class="btn btn-info">Calculate Shipping</a></p>
+						<p ng-if="!$ctrl.shippingOption"><a href="#!/shipping" class="btn btn-main">Calculate Shipping</a></p>
 						<p ng-if="$ctrl.shippingOption">
 							<div ng-if="$ctrl.shippingOption" id="paypal-button-container" style="float: right;"></div>
 							<button ng-if="$ctrl.shippingOption" ng-hide="true" id="paypalBtn1" ng-click="vm.checkout()"></button>

@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict'
 
-    function shippingController($scope, $http, $state, $log, cartService) {
+    function shippingController($scope, $http, $state, $log, prMainCartService) {
         const SHIPPING_CONTROLLER = 'SHIPPING_CONTROLLER: ';
         const LOCAL_SERVICE = 'http://localhost:3000/';
         let cntrl = this;
