@@ -33,15 +33,21 @@ jewelApp.config(function ($stateProvider) {
 
 jewelApp.controller('appController', [
   '$scope',
-  function($scope){
+  'prMainCartService',
+  function($scope, cartService){
     $scope.number = $scope.number ? $scope.number : 0;
+    $scope.vm = {};
     $scope.updateNum = function(items){
       var total = 0;
       items.forEach(function(item) {
-        total += item.quantity;
+        total += parseInt(item.quantity, 10);
       });
       console.log('Updating number to ' + total);
       $scope.number = total;
+    }
+    $scope.vm.emptyCart = () => {
+      cartService.emptyItems();
+      $scope.number = 0;
     }
   }]);
 
@@ -49,7 +55,7 @@ jewelApp.controller('appController', [
 jewelApp.controller('mainController', [
   '$scope',
   'prMainService',
-  'cartService',
+  'prMainCartService',
   function ($scope, mainSvc, cartService) {
     let MAIN_CONTR = "MAIN-CONROLLER: ";
 

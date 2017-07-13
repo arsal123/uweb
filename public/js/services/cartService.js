@@ -1,5 +1,8 @@
+/**
+ * Main Cart Service to store cart data
+ */
 angular.module('jewel')
-    .service('cartService', function () {
+    .service('prMainCartService', function () {
         // this.items = [];
         var items = [],
             shippingOption;
@@ -7,6 +10,7 @@ angular.module('jewel')
         const CART_SER = 'CART-SERVICE: ';
 
         return {
+            items: items,
             setItems: function (inputItems) {
                 items = inputItems;
                 console.debug(CART_SER + items.length)
@@ -35,16 +39,16 @@ angular.module('jewel')
                 }else { 
                     addNewItem(item);
                 }
-
-
-                
             },
             setShippingOption: function (option) {
                 shippingOption = option;
             },
             getShippingOption: function () {
-                console.debug(shippingOption);
+                // console.debug(shippingOption);
                 return shippingOption;
+            },
+            emptyItems: function () {
+               items = []; 
             }
 
         }
