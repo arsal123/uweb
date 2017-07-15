@@ -8,6 +8,7 @@
 
         ctrl.calculateShipping = function () {
             console.info(SHIPPING_CONTROLLER + 'Calculating shipping');
+
             // Put logic here for now
             $http.get(LOCAL_SERVICE + 'shipping-calc?weight=1&dcode=H9B1L5')
                 .then(function (res) {

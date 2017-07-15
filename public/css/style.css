@@ -2354,6 +2354,11 @@ a.item_add1:hover{
 	padding:25px 40px;
 	font-size:1.1em;
 }
+.btn-main {
+    color: white;
+    background-color: #1565C0;
+    border-color: #1565C0;
+}
 ul.qty{
 	padding:0;
 	margin:0;

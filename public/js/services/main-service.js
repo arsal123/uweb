@@ -10,6 +10,8 @@
                 let _this = this;
                 const BASE_URL = 'http://' + window.location.host + '/db/';
 
+                _this.BASE_URL = BASE_URL;
+
                 _this.getCategories = function(){
                     return $http({
                         method: 'GET',
