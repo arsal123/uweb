@@ -9,7 +9,8 @@
 <div class="content">
 	<div class="cart-items">
 		<div class="container">
-			<h2>My Shopping Bag (1)</h2>
+			<h2>My Shopping Bag (<span id="simpleCart_quantity" class="simpleCart_quantity" style="
+    font-family: serif;">{{$parent.number}}</span>)</h2>
 			<script>
 				$(document).ready(function (c) {
 					$('.close1').on('click', function (c) {
@@ -21,8 +22,8 @@
 			</script>
 
 			<div class="cart-header">
-				<div class="close1"> </div>
 				<div class="cart-sec simpleCart_shelfItem" ng-repeat="item in cart.items">
+					<div class="close1" ng-click="$ctrl.removeItem(item)"> </div>
 					<div class="cart-item cyc">
 						<img ng-src="{{item.img_path}}" class="img-responsive" alt="">
 					</div>

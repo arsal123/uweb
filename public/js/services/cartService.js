@@ -1,16 +1,16 @@
 /**
  * Main Cart Service to store cart data
+ * I am assuming that this class is a singleton
  */
 angular.module('jewel')
     .service('prMainCartService', function () {
-        // this.items = [];
         var items = [],
             shippingOption;
 
         const CART_SER = 'CART-SERVICE: ';
 
         return {
-            items: items,
+            // items: items,
             setItems: function (inputItems) {
                 items = inputItems;
                 console.debug(CART_SER + items.length)
@@ -39,6 +39,16 @@ angular.module('jewel')
                 }else { 
                     addNewItem(item);
                 }
+            },
+            removeItem: function(inputItem) {
+                let itemIndex;
+                for(let i = 0; i < items.length; i++){
+                    if(items[i]._id === inputItem._id){
+                        itemIndex = i;
+                        break;
+                    }
+                }
+                (itemIndex !== 'undefined') && (items.splice(itemIndex, 1));
             },
             setShippingOption: function (option) {
                 shippingOption = option;
