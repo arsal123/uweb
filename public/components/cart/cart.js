@@ -50,7 +50,8 @@
     }
     $scope.vm={}
     $scope.cart = {}
-    $scope.cart.items = prMainCartService.items;
+    $scope.cart.items = prMainCartService.getItems();
+    // $scope.cart.items = prMainCartService.items;
     ctrl.shippingOption = prMainCartService.getShippingOption();
     ctrl.shippingOption && $log.debug(ctrl.shippingOption.price.total);
     ctrl.updateQuantity = () => {
@@ -58,6 +59,11 @@
         $scope.$parent.updateNum(prMainCartService.getItems());
     }
 
+    ctrl.removeItem = (item) => {
+        $log.debug(logPrefix + 'removeItem(): ' + item);
+        prMainCartService.removeItem(item);
+        $scope.$parent.updateNum(prMainCartService.getItems());
+    } 
 
     $scope.vm.checkout=function(){
         $log.debug(logPrefix+'Starting of checkout method. Making an acccess token call');
