@@ -8,14 +8,15 @@
             '$log',
             function($http, $q, $log) {
                 let _this = this;
-                const BASE_URL = 'http://' + window.location.host + '/db/';
+                const BASE_URL = 'http://' + window.location.host;
+                const DB_URL = BASE_URL + '/db/';
 
                 _this.BASE_URL = BASE_URL;
 
                 _this.getCategories = function(){
                     return $http({
                         method: 'GET',
-                        url: BASE_URL+'category'
+                        url: DB_URL+'category'
                     })
                     .then(function(res){
                         return res.data;    
@@ -23,7 +24,7 @@
                 }
 
                 let getItems = function(){
-                    return $http.get(BASE_URL+'item')
+                    return $http.get(DB_URL+'item')
                     .then(function(res){
                         return res.data;                        
                     })
