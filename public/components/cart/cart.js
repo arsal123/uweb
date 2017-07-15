@@ -1,5 +1,5 @@
 (function(angular){
-    function cartController($scope, $http, $log, prMainCartService) {
+    function cartController($scope, $http, $log, $state, prMainCartService) {
     const logPrefix = 'CART_CONTROLLER: ';
 
     let ctrl = this;
@@ -52,6 +52,14 @@
     $scope.cart = {}
     $scope.cart.items = prMainCartService.getItems();
     // $scope.cart.items = prMainCartService.items;
+    ctrl.goShipping = () => {
+        // Check if shopping cart not empty
+        if(prMainCartService.getItems().length > 0){
+            // go to shipping page
+            $state.go('shipping');
+        }
+    }
+
     ctrl.shippingOption = prMainCartService.getShippingOption();
     ctrl.shippingOption && $log.debug(ctrl.shippingOption.price.total);
     ctrl.updateQuantity = () => {

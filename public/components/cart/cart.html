@@ -49,7 +49,7 @@
 							<div class="clearfix"></div>
 						</div>
 						<br>
-						<p ng-if="!$ctrl.shippingOption"><a href="#!/shipping" class="btn btn-main">Calculate Shipping</a></p>
+						<p ng-if="!$ctrl.shippingOption"><a href="#" class="btn btn-main" ng-click="$ctrl.goShipping()">Calculate Shipping</a></p>
 						<p ng-if="$ctrl.shippingOption">
 							<div ng-if="$ctrl.shippingOption" id="paypal-button-container" style="float: right;"></div>
 							<button ng-if="$ctrl.shippingOption" ng-hide="true" id="paypalBtn1" ng-click="vm.checkout()"></button>
