@@ -95,13 +95,7 @@
              || addrForm.state.$invalid || addrForm.postalcode.$invalid || addrForm.country.$invalid"
               ng-click="$ctrl.calculateShipping()" class="btn btn-main">Calculate Shipping</button>
             <br><br>
-             <p>
-               <span style="color:red">{{$ctrl.errMsg}}</span> 
-            </p>
-            <br><br>
-            <p>
-                <a href="#!/">Back to Main Page</a>
-            </p>
+            <view-footer msg="{{$ctrl.errMsg}}"></view-footer>
         </form>
     </div>
 </div>

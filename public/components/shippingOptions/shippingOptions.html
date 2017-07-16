@@ -1,18 +1,19 @@
 <h2>Shipping Options:</h2>
 <table class="table">
-<thead>
+  <thead>
     <th>#</th>
     <th>Service Name</th>
     <th>Price</th>
-    <th>Delivery Date</th> 
-</thead>
-<tbody>
-<tr ng-repeat="option in $ctrl.options">
-  <td>{{$index+1}}</td>
-  <td><span class="radio"><label><input type="radio" name="optradio" ng-model="$ctrl.selOption" value="{{option}}">{{option.service.name}}</label></span></td>  
-  <td>{{option.price.total}}</td>
-  <td>{{option.serviceStandard.expectedDeliveryDate | date}}</td>
-</tr>
-</tbody>
+    <th>Delivery Date</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="option in $ctrl.options">
+      <td>{{$index+1}}</td>
+      <td><span class="radio"><label><input type="radio" name="optradio" ng-model="$ctrl.selOption" value="{{option}}">{{option.service.name}}</label></span></td>
+      <td>{{option.price.total}}</td>
+      <td>{{option.serviceStandard.expectedDeliveryDate | date}}</td>
+    </tr>
+  </tbody>
 </table>
 <div><button class="btn btn-primary" ng-click="$ctrl.addShipping()">Select</button></div>
+<view-footer msg="{{$ctrl.errMsg}}"></view-footer>
