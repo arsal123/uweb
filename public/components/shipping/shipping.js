@@ -1,14 +1,15 @@
 (function (angular) {
     'use strict'
 
-    function shippingController($scope, $http, $state, $log, prMainService, prMainCartService) {
-        const SHIPPING_CONTROLLER = 'SHIPPING_CONTROLLER: ';
+    function shippingController($scope, $http, $state, $log, prMainService, prMainCartService,
+         prMainShippingOptionsService) {
+        const logPrefix = 'SHIPPING_CONTROLLER: ';
         // const LOCAL_SERVICE = 'http://localhost:3000/';
         let ctrl = this;
         // ctrl.name = 'Musa';
 
         ctrl.calculateShipping = function () {
-            console.info(SHIPPING_CONTROLLER + 'Calculating shipping');              
+            console.info(logPrefix + 'Calculating shipping');              
             let isValid = true;            
             // Additional validation
             if(prMainCartService.getItems().length < 1){
@@ -44,19 +45,22 @@
             }
 
             if(!isValid) return;
-            
-            // Put logic here for now
-            // Weight will be entered in grams - need to convert to Kg at backend later
-            $http.get(prMainService.BASE_URL + 'shipping-calc?weight=1&dcode=H9B1L5')
-                .then(function (res) {
-                    $log.info(JSON.stringify(res.data));       
-                },
-                function (err) {
-                    $log.error(SHIPPING_CONTROLLER + 'error in calling Shipping backend service');
-                });
 
-            console.info(SHIPPING_CONTROLLER + 'End of shipping calc ');
-            $state.go('shippingOptions');
+            // Calculate shipping options
+            // Set the weight correct
+            let totalWeightGrams = 0;
+            prMainCartService.getItems().forEach(function(element) {
+                totalWeightGrams += (element.weightInGrams * element.quantity);
+            });
+
+            let optionPromise = prMainShippingOptionsService.calculateShipping(totalWeightGrams, ctrl.postalCode);
+            optionPromise.then(function(res){
+                // Goto next page on success 
+               $log.info(logPrefix + ' Got Shipping Options: ' + JSON.stringify(res)) 
+               $state.go('shippingOptions');
+            }, function(err){
+                ctrl.errMsg = "Error in calculating shipping option. Please contact customer support at 514 804 3726";
+            });
         }
     }
         angular.module('jewel').component('shipping', {

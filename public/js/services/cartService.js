@@ -6,7 +6,7 @@ angular.module('jewel')
     .service('prMainCartService', function () {
         var items = [],
             shippingOption;
-
+        // console.log('Cart Service: Coming In')
         const CART_SER = 'CART-SERVICE: ';
 
         return {
@@ -21,6 +21,10 @@ angular.module('jewel')
             },
             addItem: function (item) {
                 let addNewItem = (item) => {
+                    // add item weight to weightInGrams till I correct this in crud app
+                    if( item.weight ){
+                        item.weightInGrams = item.weight;
+                    }
                     item.quantity = 1;
                     items.push(item);                    
                 }
