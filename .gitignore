@@ -2,6 +2,7 @@
 .idea
 .vscode
 .DS_Store
+.eslintrc.json
 firstPlan.gan
 w3layouts-License.txt
 
