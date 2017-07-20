@@ -4,14 +4,28 @@ const CanadaPost = require('node-canadapost-international')('cf19548c31f64ac5', 
 const SHIPPING_CALC_SERV = 'shippingCalcServ: ';
 CanadaPost.setOriginPostalCode('H9B1L5');
 
-exports.getRates = function (weight, destinationPostalCode, processResp) {
+/**
+ * Although we have countryCode param, we are not doing anything with it right now
+ */
+exports.getRates = function (weight, destinationPostalCode, destinationCountryCode,
+   processResp) {
   
   console.log(SHIPPING_CALC_SERV + parseFloat(weight) + destinationPostalCode);
-
-  CanadaPost.getRates({
+  
+  let reqObj = {
     weight: parseFloat(weight), //kg
-    destinationPostalCode: destinationPostalCode
-  }, function (err, rates) {
+  }
+  // Select US or Canada
+  if(destinationPostalCode.length === 5){
+    // Its US
+    reqObj.destinationZipCode = destinationPostalCode;
+
+  } else if (destinationPostalCode.length === 6) {
+    // Country Canada
+    reqObj.destinationPostalCode = destinationPostalCode; 
+  }  
+
+  CanadaPost.getRates(reqObj, function (err, rates) {
     // console.log(err, rates);
     processResp(err, rates);
   });

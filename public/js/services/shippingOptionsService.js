@@ -8,7 +8,7 @@
             console.log(logPrefix + 'Coming In')
 
             return {
-                calculateShipping: function (weightInGrams, postalCode) {
+                calculateShipping: function (weightInGrams, postalCode, countryCode) {
                     console.info(logPrefix + 'Calculating shipping weightInGrams: '+weightInGrams
                     +'postalCode: '+postalCode);
 
@@ -16,6 +16,8 @@
                     let weightInKg = weightInGrams / 1000;
 
                     // Put call here
+                    // We are not passing country code now as it is only US and Canada
+                    // In future we can also pass in country code like  + '&country=' + countryCode
                     return $http.get(prMainService.BASE_URL + '/shipping-calc?weight=' + weightInKg + '&dcode=' + postalCode)
                         .then(function (res) {
                             // $log.info(JSON.stringify(res.data));
