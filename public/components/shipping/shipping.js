@@ -53,7 +53,7 @@
                 totalWeightGrams += (element.weightInGrams * element.quantity);
             });
 
-            let optionPromise = prMainShippingOptionsService.calculateShipping(totalWeightGrams, ctrl.postalCode);
+            let optionPromise = prMainShippingOptionsService.calculateShipping(totalWeightGrams, ctrl.postalCode, ctrl.country);
             optionPromise.then(function(res){
                 // Goto next page on success 
                $log.info(logPrefix + ' Got Shipping Options: ' + JSON.stringify(res)) 

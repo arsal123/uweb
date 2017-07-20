@@ -6,7 +6,8 @@ exports.getRates = function (req, res) {
     
     console.log(SHIPPING_CONTR + 'START: ' + JSON.stringify(req.params));
     const weight = req.query.weight
-    ,     postalCode = req.query.dcode;
+    ,     postalCode = req.query.dcode,
+          countryCode = req.query.country; //Country code is optional to pass
 
     if(!weight || !postalCode){
         res.status(400).send({
@@ -14,7 +15,7 @@ exports.getRates = function (req, res) {
         });
     }
 
-    shipping.getRates(weight, postalCode, function (err, data) {
+    shipping.getRates(weight, postalCode, countryCode, function (err, data) {
         if (err)
             res.send(err);
         res.json(data);
