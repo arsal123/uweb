@@ -14,6 +14,12 @@
 
                     // Convert weight to kg
                     let weightInKg = weightInGrams / 1000;
+                    let adjustDate = function(shippingOptions) {
+                        shippingOptions.forEach(function(option) {
+                            option.serviceStandard.expectedDeliveryDate *= 1000;
+                        });
+                        return shippingOptions;
+                    }
 
                     // Put call here
                     // We are not passing country code now as it is only US and Canada
@@ -21,7 +27,7 @@
                     return $http.get(prMainService.BASE_URL + '/shipping-calc?weight=' + weightInKg + '&dcode=' + postalCode)
                         .then(function (res) {
                             // $log.info(JSON.stringify(res.data));
-                            shippingOptions = res.data;
+                            shippingOptions = adjustDate(res.data);
                             return shippingOptions;
                         },
                         function (err) {
