@@ -60,6 +60,7 @@
                 }
 
                 // doAuth();
+               
 
                 return _this;
             }]);

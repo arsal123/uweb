@@ -37,6 +37,12 @@ jewelApp.controller('appController', [
   function($scope, cartService){
     $scope.number = $scope.number ? $scope.number : 0;
     $scope.vm = {};
+
+    // Fix location to #!/ if not there
+    if(window.location.hash === ''){
+      window.location.href = window.location.href + '#!/'
+    }
+
     $scope.updateNum = function(items){
       var total = 0;
       items.forEach(function(item) {
