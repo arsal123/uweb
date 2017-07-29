@@ -30,22 +30,26 @@
 					<div class="cart-item-info">
 						<h3><a href="#!/cart"> {{item.name}} </a>
 						</h3>
-						<ul class="qty">
+						<!-- <ul class="qty">
 							<li>
 								<p>Min. order value:</p>
 							</li>
 							<li>
 								<p>FREE delivery</p>
 							</li>
-						</ul>
+						</ul> -->
 						<div class="delivery">
 							<p class="price-line">Price : ${{item.price*item.quantity}}</p>
-							<span class="price-line">Quantity: 
-							<input id="quantity1" type="text" ng-model="item.quantity" class="cart-quantity" ng-blur="$ctrl.updateQuantity()"> 
-							<!-- <button ng-click="$ctrl.updateQuantity(item)" class="quantity">Update Quantity</button> -->
+							<span class="delivery-right price-line">Quantity: 
+								<input id="quantity1" type="text" ng-model="item.quantity" class="cart-quantity" ng-blur="$ctrl.updateQuantity()"> 
+								<!-- <button ng-click="$ctrl.updateQuantity(item)" class="quantity">Update Quantity</button> -->
 							</span>
 							<br>
-							<p ng-if="$ctrl.shippingOption">Selected Shipping Charges : ${{$ctrl.shippingOption.price.total}}</p>
+							<br>
+							<p class="price-line" ng-if="$ctrl.shippingOption">Shipping Option Charges: ${{$ctrl.shippingOption.price.total}}</p>
+							<br>
+							<br>
+							<p class="price-line" ng-if="$ctrl.shippingOption">Total: <span class="price-line" style="font-weight: bold !important;">${{($ctrl.shippingOption.price.total + item.price*item.quantity) | number : 2}}</span></p>
 							<div class="clearfix"></div>
 						</div>
 						<br>

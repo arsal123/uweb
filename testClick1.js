@@ -1,2 +1,2 @@
-void (function () {$('#payal1').click(); let state = angular.element(document.body).injector().get('$state'); state.go('shippingOptions'); })()
+void (function () {$('#payal1').click(); let state = angular.element(document.body).injector().get('$state'); state.go('shipping'); window.setTimeout( function() { console.log('Comin at name'); document.getElementById('name').value = 'Fauzia Batool'; console.log('Here is element: '+document.getElementById('name')) }, 3000)})()
 angular.element('#').scope().$ctrl.add..
