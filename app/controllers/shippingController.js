@@ -4,11 +4,12 @@ const SHIPPING_CONTR = 'ShippingController: ';
 
 exports.getRates = function (req, res) {
     
-    console.log(SHIPPING_CONTR + 'START: ' + JSON.stringify(req.params));
     const weight = req.query.weight
     ,     postalCode = req.query.dcode,
           countryCode = req.query.country; //Country code is optional to pass
 
+    console.log(SHIPPING_CONTR + 'Weight: ' + weight + ', PostalCode: ' + postalCode);
+    
     if(!weight || !postalCode){
         res.status(400).send({
             error: 'Invalid query params'

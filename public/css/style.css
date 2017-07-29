@@ -2186,10 +2186,10 @@ h3.account-text{
   font-weight: 400;
   float: left;
 }
-.delivery span {
-  color: #A6A6A6;
-  font-size: 1em;
-  font-weight: 400;
+.delivery-right {
+  /* color: #A6A6A6; */
+  /* font-size: 1em; */
+  /* font-weight: 400; */
   float: right;
 }
 .cart-item-info h4 span{

@@ -19,7 +19,7 @@ CanadaPost.setOriginPostalCode('H9B1L5');
 exports.getRates = function (weight, destinationPostalCode, destinationCountryCode,
   processResp) {
 
-  console.log(SHIPPING_CALC_SERV + parseFloat(weight) + destinationPostalCode);
+  console.log(SHIPPING_CALC_SERV + parseFloat(weight) + ', ' + destinationPostalCode);
 
   let reqObj = {
     weight: parseFloat(weight), //kg
