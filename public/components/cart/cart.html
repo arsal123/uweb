@@ -60,6 +60,7 @@
 							<div ng-if="$ctrl.shippingOption" id="paypal-button-container" style="float: right;"></div>
 							<button ng-if="$ctrl.shippingOption" ng-hide="true" id="paypalBtn1" ng-click="vm.checkout()"></button>
 							<script>
+								// This is to draw the button
 								let drawButton = function () {
 									$('#paypalBtn1').click();
 								}
