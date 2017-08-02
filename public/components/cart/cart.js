@@ -1,5 +1,5 @@
 (function (angular) {
-    function cartController($scope, $http, $log, $state, prMainCartService) {
+    function cartController($scope, $http, $log, $state, $filter, prMainCartService) {
         const logPrefix = 'CART_CONTROLLER: ';
 
         let ctrl = this;
@@ -22,17 +22,24 @@
                 // payment() is called when the button is clicked
                 payment: function (data, actions) {
 
+                    const cancelUrl = window.location.href;
+                    // This url is needed for paypal account after having successful payments
+                    const successUrl =  window.location.origin + '/#!/paySuccess'; 
+
+                    console.log(logPrefix + 'paypal payment function: ' + ctrl.totalCost);
+                    console.log(logPrefix + 'paypal payment function: cancel URL: ' + cancelUrl + ', SuccessUrl: '+successUrl);
+
                     // Make a call to the REST api to create the payment
                     return actions.payment.create({
                         transactions: [
                             {
-                                amount: { total: '0.01', currency: 'USD' }
+                                // amount: { total: ctrl.totalCost, currency: 'CAD' }
+                                amount: { total: '0.01', currency: 'CAD' }
                             }
                         ],
-
                         "redirect_urls": {
-                            "return_url": "http://www.amazon.com",
-                            "cancel_url": "http://www.hawaii.com"
+                            "return_url": successUrl,
+                            "cancel_url": cancelUrl
                         }
                     });
                 },
@@ -43,12 +50,17 @@
                     // Make a call to the REST api to execute the payment
                     return actions.payment.execute().then(function () {
                         window.alert('Payment Complete!');
+                        $state.go('paySuccess');
                     });
                 }
 
             }, '#paypal-button-container');
         }
-        
+
+        /** 
+         * calcTottalCost function
+         * It is using $filter to filter the numbers
+         * */
         let calcTotalCost = (items, shippingOption) => {
             $log.debug(logPrefix + 'calcTotalCost START')
             let cost = 0,
@@ -59,7 +71,7 @@
                 cost += (items[currItem].price * items[currItem].quantity);
             }
             cost += shippingOption.price.total;
-            ctrl.totalCost = cost;
+            ctrl.totalCost = $filter('number')(cost, 2);
             $log.debug(logPrefix + 'Calc total cost: ' + ctrl.totalCost);
         }
 
