@@ -10,6 +10,7 @@
                 let _this = this;
                 const BASE_URL = 'http://' + window.location.host;
                 const DB_URL = BASE_URL + '/db/';
+                const logPrefix = 'prMainService: ';
 
                 _this.BASE_URL = BASE_URL;
 
@@ -59,8 +60,38 @@
                     });
                 }
 
+                _this.saveThing = function (thing) {
+                    // return $http.get(DB_URL + 'item')
+                    //     .then(function (res) {
+                    //         console.log(logPrefix + JSON.stringify(res.data));
+                    //         return res.data;
+                    //     })
+                    $http.defaults.headers.post = {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    }
+                    
+                    return $http({
+                        method: 'POST',
+                        url: DB_URL + 'thing',
+                        data: thing
+                    
+                    }).then(function (res) {
+                            console.log(logPrefix + JSON.stringify(res.data));
+                            return res.data;
+                    })
+
+                }
+
+                _this.getThing = function () {
+                    return $http.get(DB_URL + 'thing')
+                        .then(function (res) {
+                            return res.data;
+                        })
+                }
+
                 // doAuth();
-               
+
 
                 return _this;
             }]);
