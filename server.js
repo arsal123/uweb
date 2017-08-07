@@ -11,8 +11,8 @@ var bodyParser = require('body-parser');
 const ShippingContr = require('./app/controllers/shippingController');
 
 var apiProxy = httpProxy.createProxyServer();
-// const serverOne = 'http://13.58.6.10:3150';
-const serverOne = 'http://localhost:3150';
+const serverOne = 'http://13.58.6.10:3150';
+// const serverOne = 'http://localhost:3150';
 let setup = function (ssl) {
   if (ssl && ssl.active) {
     return {
