@@ -1,18 +1,18 @@
 (function (angular) {
-    function cartController($scope, $http, $log, $state, $filter, prMainCartService) {
+    function cartController($scope, $http, $log, $state, $filter, prMainCartService, prMainService) {
         const logPrefix = 'CART_CONTROLLER: ';
 
         let ctrl = this;
         let paypalRender = function () {
             paypal.Button.render({
 
-                env: 'sandbox', // Or 'sandbox' 'production',
+                // env: 'sandbox', // Or 'sandbox' 'production',
+                env: 'production', // Or 'sandbox' 'production',
 
                 // PayPal Client IDs - replace with your own
                 // Create a PayPal app: https://developer.paypal.com/developer/applications/create
                 client: {
                     sandbox: 'Ac0jN0nTDSLOrFp7L12FgcazcVLh4OJxdgg56kLuLu15imqwH_HivAoTJtGEC8S-SnXtuvbo3_A4Rk6a',
-                    // sandbox: 'Ac0jN0nTDSLOrFp7L12FgcazcVLh4OJxdgg56kLuLu15imqwH_HivAoTJtGEC8S-SnXtuvbo3_A4Rk6a:EKJ-xIY--cpPnvlWLEkCOv1fWbBultorxsGuBIn9IQFQlievzGMCKGHvfXi8jbEErDArQ9flGkDFP-uS',
                     production: 'ASqd9sOZJLboO-kJW1d8oOjnaGB3s19LkfZoDRKOaVN91D8aCtFQGo5iw3m2MwDVA5J1Qhtl-tk6H3OY'
                 },
 
@@ -47,10 +47,22 @@
                 // onAuthorize() is called when the buyer approves the payment
                 onAuthorize: function (data, actions) {
 
+                    console.log(logPrefix + 'OnAuthorize: ' + JSON.stringify(data));
+                    
                     // Make a call to the REST api to execute the payment
-                    return actions.payment.execute().then(function () {
-                        window.alert('Payment Complete!');
+                    return actions.payment.execute().then(function (finalThing) {
+                        console.log(logPrefix + 'Payment: ' + JSON.stringify(finalThing));
+                        // window.alert('Payment Complete!');
+
+                        // Save the response
+                        const id = prMainService.saveThing(finalThing);
+                        console.log(logPrefix + 'Payment Confirmation ID: ' + id);
+
+                        // Add confirmation number to output
+
                         $state.go('paySuccess');
+                    }, function(err){
+                        console.log(logPrefix + 'Payment execute err: ' + err);
                     });
                 }
 
@@ -111,23 +123,25 @@
         $scope.vm.checkout = function () {
             $log.debug(logPrefix + 'Starting of checkout method. Making an acccess token call');
 
-            $http({
-                method: 'POST',
-                url: 'https://api.sandbox.paypal.com/v1/oauth2/token',
-                headers: {
-                    'Accept': 'application/json',
-                    'Accept-Language': 'en_US',
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'authorization': 'Basic ' + btoa('Ac0jN0nTDSLOrFp7L12FgcazcVLh4OJxdgg56kLuLu15imqwH_HivAoTJtGEC8S-SnXtuvbo3_A4Rk6a:EKJ-xIY--cpPnvlWLEkCOv1fWbBultorxsGuBIn9IQFQlievzGMCKGHvfXi8jbEErDArQ9flGkDFP-uS'),
-                },
-                data: $.param({
-                    grant_type: 'client_credentials'
-                })
-            }).then(function (data) {
+            //Commenting below request as it is no longer needed. I have tried with prod url
+
+            // $http({
+            //     method: 'POST',
+            //     url: 'https://api.sandbox.paypal.com/v1/oauth2/token',
+            //     headers: {
+            //         'Accept': 'application/json',
+            //         'Accept-Language': 'en_US',
+            //         'Content-Type': 'application/x-www-form-urlencoded',
+            //         'authorization': 'Basic ' + btoa('Ac0jN0nTDSLOrFp7L12FgcazcVLh4OJxdgg56kLuLu15imqwH_HivAoTJtGEC8S-SnXtuvbo3_A4Rk6a:EKJ-xIY--cpPnvlWLEkCOv1fWbBultorxsGuBIn9IQFQlievzGMCKGHvfXi8jbEErDArQ9flGkDFP-uS'),
+            //     },
+            //     data: $.param({
+            //         grant_type: 'client_credentials'
+            //     })
+            // }).then(function (data) {
                 paypalRender();
-            }, function () {
-                console.error('error in getting token');
-            });
+            // }, function () {
+            //     console.error('error in getting token');
+            // });
 
         }
     }
