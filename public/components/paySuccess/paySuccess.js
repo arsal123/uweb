@@ -7,6 +7,8 @@
         let ctrl = this;
         $log.debug(logPrefix + 'inside')
 
+        ctrl.payConfId = prMainService.getPaymentConfId();
+        
         // Get confirmation number from paypal
 
         // Get other details from diff places

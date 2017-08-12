@@ -24,10 +24,10 @@
 
                     const cancelUrl = window.location.href;
                     // This url is needed for paypal account after having successful payments
-                    const successUrl =  window.location.origin + '/#!/paySuccess'; 
+                    const successUrl = window.location.origin + '/#!/paySuccess';
 
                     console.log(logPrefix + 'paypal payment function: ' + ctrl.totalCost);
-                    console.log(logPrefix + 'paypal payment function: cancel URL: ' + cancelUrl + ', SuccessUrl: '+successUrl);
+                    console.log(logPrefix + 'paypal payment function: cancel URL: ' + cancelUrl + ', SuccessUrl: ' + successUrl);
 
                     // Make a call to the REST api to create the payment
                     return actions.payment.create({
@@ -48,20 +48,22 @@
                 onAuthorize: function (data, actions) {
 
                     console.log(logPrefix + 'OnAuthorize: ' + JSON.stringify(data));
-                    
+                    console.info(logPrefix + 'authorizeSave Confirmation: ' + prMainService.saveAuthorize(data));
+
                     // Make a call to the REST api to execute the payment
                     return actions.payment.execute().then(function (finalThing) {
                         console.log(logPrefix + 'Payment: ' + JSON.stringify(finalThing));
                         // window.alert('Payment Complete!');
 
                         // Save the response
-                        const id = prMainService.saveThing(finalThing);
-                        console.log(logPrefix + 'Payment Confirmation ID: ' + id);
+                        prMainService.saveThing(finalThing).then(function (id) {
+                            console.log(logPrefix + 'Payment Confirmation ID: ' + id);
+                            $state.go('paySuccess');
+                        });
 
                         // Add confirmation number to output
 
-                        $state.go('paySuccess');
-                    }, function(err){
+                    }, function (err) {
                         console.log(logPrefix + 'Payment execute err: ' + err);
                     });
                 }
@@ -138,7 +140,7 @@
             //         grant_type: 'client_credentials'
             //     })
             // }).then(function (data) {
-                paypalRender();
+            paypalRender();
             // }, function () {
             //     console.error('error in getting token');
             // });
