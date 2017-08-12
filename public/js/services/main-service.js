@@ -111,6 +111,25 @@
                         });
                 }
 
+                _this.saveAuthorize = function (authorize) {
+
+                    $http.defaults.headers.post = {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    }
+                    
+                    return $http({
+                        method: 'POST',
+                        url: DB_URL + 'onAuthorize',
+                        data: authorize
+                    
+                    }).then(function (res) {
+                            console.log(logPrefix + ' saveAuthorize return: ' + JSON.stringify(res.data));
+                            return res.data;
+                    })
+
+                }
+ 
                 // doAuth();
 
                 return _this;
