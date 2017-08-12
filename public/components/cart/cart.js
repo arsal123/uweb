@@ -33,8 +33,8 @@
                     return actions.payment.create({
                         transactions: [
                             {
-                                // amount: { total: ctrl.totalCost, currency: 'CAD' }
-                                amount: { total: '0.01', currency: 'CAD' }
+                                amount: { total: ctrl.totalCost, currency: 'CAD' }
+                                // amount: { total: '0.01', currency: 'CAD' }
                             }
                         ],
                         "redirect_urls": {
@@ -58,6 +58,10 @@
                         // Save the response
                         prMainService.saveThing(finalThing).then(function (id) {
                             console.log(logPrefix + 'Payment Confirmation ID: ' + id);
+
+                            // Empty cart
+                            $scope.$parent.vm.emptyCart();
+
                             $state.go('paySuccess');
                         });
 
