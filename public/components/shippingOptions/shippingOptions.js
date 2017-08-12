@@ -2,8 +2,7 @@
     'use strict'
 
     function shippingOptionsController($scope, $http, $state, $log, prMainService, prMainCartService, prMainShippingOptionsService) {
-        const SHIPPING_CONTROLLER = 'SHIPPING_CONTROLLER: ';
-        // const LOCAL_SERVICE = 'http://localhost:3000/';
+        const logPrefix = 'SHIPPING_CONTROLLER: ';
         let ctrl = this;
 
         ctrl.options = prMainShippingOptionsService.getShippingOptions();
@@ -21,70 +20,82 @@
             }
         }
 
+        // ctrl.testAuthorize = function(){
+        //     console.debug(logPrefix + 'going to test Authorize Save call');
+        //     const authObj = {
+        //         "paymentToken": "EC-5SV06868XR467703Y",
+        //         "payerID": "SEZ523VRM5HT4",
+        //         "paymentID": "PAY-2EE42136DP669730CLGGR5GY",
+        //         "intent": "sale",
+        //         "returnUrl": "http://localhost:3000/#!/paySuccess?paymentId=PAY-2EE42136DP669730CLGGR5GY&token=EC-5SV06868XR467703Y&PayerID=SEZ523VRM5HT4"
+        //     }
+        //     prMainService.saveAuthorize(authObj);
+        // }
+
         // ctrl.testGetThing = function(){
         //     console.log(SHIPPING_CONTROLLER + 'inside get thing')
         //     prMainService.getThing();
         // }
 
-        // ctrl.testPayment = function () {
-            // const PAYMENT_TEST = 'PAYMENT-TEST: ';
-            // console.debug(PAYMENT_TEST + 'inside');
+        ctrl.testPayment = function () {
+            const PAYMENT_TEST = 'PAYMENT-TEST: ';
+            console.debug(PAYMENT_TEST + 'inside');
 
-            // const payObj = {
-            //     "id": "PAY-78J98036GT946311YLGBVY4I",
-            //     "intent": "sale",
-            //     "state": "approved",
-            //     "cart": "37N342791W405120Y",
-            //     "create_time": "2017-08-03T17:26:38Z",
-            //     "payer": {
-            //         "payment_method": "paypal",
-            //         "status": "VERIFIED",
-            //         "payer_info": {
-            //             "email": "robotics1@gmail.com",
-            //             "first_name": "Muhammad",
-            //             "middle_name": "Muhammad",
-            //             "last_name": "Siddiqui",
-            //             "payer_id": "SEZ523VRM5HT4",
-            //             "country_code": "US",
-            //             "shipping_address": {
-            //                 "recipient_name": "Muhammad A Siddiqui",
-            //                 "line1": "4205 Ivanhoe Dr",
-            //                 "city": "Monroeville",
-            //                 "state": "PA",
-            //                 "postal_code": "15146-2680",
-            //                 "country_code": "US"
-            //             }
-            //         }
-            //     },
-            //     "transactions": [
-            //         {
-            //             "amount": {
-            //                 "total": "0.01",
-            //                 "currency": "CAD",
-            //                 "details": {}
-            //             },
-            //             "item_list": {},
-            //             "related_resources": [
-            //                 {
-            //                     "sale": {
-            //                         "id": "1EP27070DW912684L",
-            //                         "state": "completed",
-            //                         "payment_mode": "INSTANT_TRANSFER",
-            //                         "protection_eligibility": "ELIGIBLE",
-            //                         "parent_payment": "PAY-78J98036GT946311YLGBVY4I",
-            //                         "amount": {
-            //                             "total": "0.01",
-            //                             "currency": "CAD",
-            //                             "details": {}
-            //                         }
-            //                     }
-            //                 }
-            //             ]
-            //         }
-            //     ]
-            // }
-        //     prMainService.saveThing(payObj);
-        // }
+            const payObj = {
+                "id": "PAY-78J98036GT946311YLGBVY4I",
+                "intent": "sale",
+                "state": "approved",
+                "cart": "37N342791W405120Y",
+                "create_time": "2017-08-03T17:26:38Z",
+                "payer": {
+                    "payment_method": "paypal",
+                    "status": "VERIFIED",
+                    "payer_info": {
+                        "email": "robotics1@gmail.com",
+                        "first_name": "Muhammad",
+                        "middle_name": "Muhammad",
+                        "last_name": "Siddiqui",
+                        "payer_id": "SEZ523VRM5HT4",
+                        "country_code": "US",
+                        "shipping_address": {
+                            "recipient_name": "Muhammad A Siddiqui",
+                            "line1": "4205 Ivanhoe Dr",
+                            "city": "Monroeville",
+                            "state": "PA",
+                            "postal_code": "15146-2680",
+                            "country_code": "US"
+                        }
+                    }
+                },
+                "transactions": [
+                    {
+                        "amount": {
+                            "total": "0.01",
+                            "currency": "CAD",
+                            "details": {}
+                        },
+                        "item_list": {},
+                        "related_resources": [
+                            {
+                                "sale": {
+                                    "id": "1EP27070DW912684L",
+                                    "state": "completed",
+                                    "payment_mode": "INSTANT_TRANSFER",
+                                    "protection_eligibility": "ELIGIBLE",
+                                    "parent_payment": "PAY-78J98036GT946311YLGBVY4I",
+                                    "amount": {
+                                        "total": "0.01",
+                                        "currency": "CAD",
+                                        "details": {}
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+            prMainService.saveThing(payObj);
+        }
 
     }
     angular.module('jewel').component('shippingOptions', {

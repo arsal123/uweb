@@ -1,0 +1,62 @@
+{
+    "create_time": "2017-08-11T03:10:10.419Z",
+    "paymentToken": "EC-5SV06868XR467703Y",
+    "payerID": "SEZ523VRM5HT4",
+    "paymentID": "PAY-2EE42136DP669730CLGGR5GY",
+    "intent": "sale",
+    "returnUrl": "http://localhost:3000/#!/paySuccess?paymentId=PAY-2EE42136DP669730CLGGR5GY&token=EC-5SV06868XR467703Y&PayerID=SEZ523VRM5HT4"
+}
+
+{
+    "id": "PAY-2EE42136DP669730CLGGR5GY",
+    "intent": "sale",
+    "state": "approved",
+    "cart": "5SV06868XR467703Y",
+    "create_time": "2017-08-11T03:04:15Z",
+    "payer": {
+        "payment_method": "paypal",
+        "status": "VERIFIED",
+        "payer_info": {
+            "email": "robotics1@gmail.com",
+            "first_name": "Muhammad",
+            "middle_name": "Muhammad",
+            "last_name": "Siddiqui",
+            "payer_id": "SEZ523VRM5HT4",
+            "country_code": "US",
+            "shipping_address": {
+                "recipient_name": "Muhammad A Siddiqui",
+                "line1": "4205 Ivanhoe Dr",
+                "city": "Monroeville",
+                "state": "PA",
+                "postal_code": "15146-2680",
+                "country_code": "US"
+            }
+        }
+    },
+    "transactions": [
+        {
+            "amount": {
+                "total": "0.01",
+                "currency": "CAD",
+                "details": {}
+            },
+            "item_list": {},
+            "related_resources": [
+                {
+                    "sale": {
+                        "id": "05201409XN919374M",
+                        "state": "completed",
+                        "payment_mode": "INSTANT_TRANSFER",
+                        "protection_eligibility": "ELIGIBLE",
+                        "parent_payment": "PAY-2EE42136DP669730CLGGR5GY",
+                        "amount": {
+                            "total": "0.01",
+                            "currency": "CAD",
+                            "details": {}
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
