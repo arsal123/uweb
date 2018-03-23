@@ -80,14 +80,14 @@ jewelApp.controller('mainController', [
       $scope.data.row1item3 = data;
       $scope.data.newArrivalItem2 = data;
     }).catch(function (err) {
-      console.error(err);
+      console.log(err);
     });
 
     let newArrivalPromise = mainSvc.getNewArrivalItems();
     newArrivalPromise.then(function (data) {
       $scope.data.newArrivalItem2 = data;
     }).catch(function (err) {
-      console.error(err);
+      console.log(err);
     });
 
     $scope.checkout.addToCart = function (item) {
