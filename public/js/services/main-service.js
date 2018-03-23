@@ -9,26 +9,11 @@
             function ($http, $q, $log) {
                 let _this = this;
                 const BASE_URL = 'http://' + window.location.host;
-                const DB_URL = BASE_URL + '/db/';
+                const DB_URL = BASE_URL + '/ldb/';
                 const logPrefix = 'prMainService: ';
                 var paymentConfId;
 
                 _this.BASE_URL = BASE_URL;
-
-                // Need to fix this method
-                var doAuth = function () {
-                    $http({
-                        method: 'POST',
-                        url: DB_URL + 'auth',
-                        body: {
-                            username: 'admin1',
-                            password: 'siddiqui1'
-                        }
-                    })
-                        .then(function (res) {
-                            $log.debug(res.data);
-                        });
-                }
 
                 _this.getCategories = function () {
                     return $http({
@@ -41,7 +26,9 @@
                 }
 
                 let getItems = function () {
-                    return $http.get(DB_URL + 'item')
+                    let dbUrl = DB_URL + 'item';
+                    console.info("DB URL: " + dbUrl);
+                    return $http.get(dbUrl)
                         .then(function (res) {
                             return res.data;
                         })
