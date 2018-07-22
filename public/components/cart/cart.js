@@ -155,6 +155,5 @@
     angular.module('jewel').component('cart', {
         templateUrl: 'components/cart/cart.html',
         controller: cartController
-
     })
 })(window.angular)
