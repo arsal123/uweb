@@ -1,2 +1,2 @@
 # u-web
-Test project with given template
+Universal Merchandise Main Website
