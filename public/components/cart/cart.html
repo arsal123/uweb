@@ -46,10 +46,14 @@
 							</span>
 							<br>
 							<br>
+							<p class="price-line" ng-if="$ctrl.shippingOption && $ctrl.totalSalesTax">Total Sales Tax: ${{$ctrl.totalSalesTax}} (CAD)</p>
+							<br>
+							<br>
+							<br>
+							<br>
 							<p class="price-line" ng-if="$ctrl.shippingOption">Shipping Option Charges: ${{$ctrl.shippingOption.price.total}} (CAD)</p>
 							<br>
 							<br>
-							<!-- <p class="price-line" ng-if="$ctrl.shippingOption">Total: <span class="price-line" style="font-weight: bold !important;">${{($ctrl.shippingOption.price.total + item.price*item.quantity) | number : 2}}</span> -->
 							<p class="price-line" ng-if="$ctrl.shippingOption">Total: <span class="price-line" style="font-weight: bold !important;">${{$ctrl.totalCost}} (CAD)</span>
 							</p>
 							<div class="clearfix"></div>
