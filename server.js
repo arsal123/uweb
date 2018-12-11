@@ -61,18 +61,11 @@ app.get('/shipping-calc', ShippingContr.getRates);
 
 let settings = {
   ssl: {
-    active: false,
-    key: '',
-    certificate: '' 
+    active: true,
+    key: './public/sslcert/privkey.pem',
+    certificate: './public/sslcert/fullchain.pem' 
   },
   port: 3002 //alt it can be port 443 for assl
-
-  // Prod setting
-  // ssl: {
-  //   active: true,
-  //   key: './public/sslcert/privkey.pem',
-  //   certificate: './public/sslcert/fullchain.pem'
-  // },
 }
 
 create(settings, app, function(){
