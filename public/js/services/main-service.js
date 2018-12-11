@@ -9,7 +9,8 @@
             function ($http, $q, $log) {
                 let _this = this;
                 // Will be diff for local
-                const BASE_URL = 'https://' + window.location.host;
+                const BASE_URL = 'http://' + window.location.host;
+                // const BASE_URL = 'https://' + window.location.host;
                 const DB_URL = BASE_URL + '/ldb/';
                 const logPrefix = 'prMainService: ';
                 var paymentConfId;

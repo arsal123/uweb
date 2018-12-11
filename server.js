@@ -29,6 +29,7 @@ let start = function start(app, options) {
 }
 
 let create = function (settings, app, cb) {
+  // var options = null;
   var options = setup(settings.ssl);
   return start(app, options).listen(settings.port, cb);
 }
@@ -55,6 +56,7 @@ app.use(express.static(__dirname + '/../shared-img/item'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// For getting rates for the package from Canada Post
 app.get('/shipping-calc', ShippingContr.getRates);
 
 let settings = {

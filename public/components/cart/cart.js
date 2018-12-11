@@ -88,15 +88,23 @@
             for (currItem in items) {
                 cost += (items[currItem].price * items[currItem].quantity);
             }
-            cost += shippingOption.price.total;
-            ctrl.totalCost = $filter('number')(cost, 2);
-            $log.debug(logPrefix + 'Calc total cost: ' + ctrl.totalCost);
+
+            if(shippingOption){
+                // Calculate sales tax
+                totalSalesTax = 13/100 * cost;
+
+                cost += (shippingOption.price.total + totalSalesTax);
+
+                ctrl.totalSalesTax = $filter('number')(totalSalesTax, 2);
+                ctrl.totalCost = $filter('number')(cost, 2);
+                $log.debug(logPrefix + 'Calc total cost: ' + ctrl.totalCost);
+    
+            }
         }
 
         $scope.vm = {}
         $scope.cart = {}
         $scope.cart.items = prMainCartService.getItems();
-        // $scope.cart.items = prMainCartService.items;
         ctrl.goShipping = () => {
             // Check if shopping cart not empty
             if (prMainCartService.getItems().length > 0) {
@@ -104,14 +112,6 @@
                 $state.go('shipping');
             }
         }
-
-        ctrl.shippingOption = prMainCartService.getShippingOption();
-        if (ctrl.shippingOption) {
-            $log.debug(ctrl.shippingOption.price.total);
-            // Calculate total cost
-            calcTotalCost($scope.cart.items, ctrl.shippingOption);
-        }
-
         ctrl.updateQuantity = () => {
             $log.debug(logPrefix + 'updateQuantity(): ');
             $scope.$parent.updateNum(prMainCartService.getItems());
@@ -150,6 +150,10 @@
             // });
 
         }
+
+        ctrl.shippingOption = prMainCartService.getShippingOption();
+        calcTotalCost($scope.cart.items, ctrl.shippingOption);
+
     }
 
     angular.module('jewel').component('cart', {
