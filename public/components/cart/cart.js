@@ -152,11 +152,7 @@
         }
 
         ctrl.shippingOption = prMainCartService.getShippingOption();
-        // if (ctrl.shippingOption) {
-        //     $log.debug(ctrl.shippingOption.price.total);
-            // Calculate total cost
-            calcTotalCost($scope.cart.items, ctrl.shippingOption);
-        // }
+        calcTotalCost($scope.cart.items, ctrl.shippingOption);
 
     }
 
