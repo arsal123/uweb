@@ -91,7 +91,7 @@ jewelApp.controller('mainController', [
     });
 
     $scope.checkout.addToCart = function (item) {
-      console.debug("Cart Item to Add: " + JSON.stringify(item));
+      // console.debug("Cart Item to Add: " + JSON.stringify(item));
       cartService.addItem(item);
       
       $scope.$parent.updateNum(cartService.getItems());
