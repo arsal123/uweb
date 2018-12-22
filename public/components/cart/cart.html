@@ -1,9 +1,3 @@
-<div class="banner1">
-	<div class="container">
-		<h3><a href="index.html">Home</a> / <span>Checkout</span></h3>
-	</div>
-</div>
-<!--banner-->
 <link rel="stylesheet" href="components/cart/cart.css" type="text/css" media="screen" charset="utf-8" />
 <!--content-->
 <div class="content">
@@ -46,11 +40,12 @@
 							</span>
 							<br>
 							<br>
-							<p class="price-line" ng-if="$ctrl.shippingOption && $ctrl.totalSalesTax">Total Sales Tax: ${{$ctrl.totalSalesTax}} (CAD)</p>
-							<br>
-							<br>
-							<br>
-							<br>
+							<p class="price-line" ng-if="$ctrl.shippingOption && $ctrl.totalSalesTax">Total Sales Tax: ${{$ctrl.totalSalesTax}} (CAD)
+								<br>
+								<br>
+								<br>
+								<br>	
+							</p>
 							<p class="price-line" ng-if="$ctrl.shippingOption">Shipping Option Charges: ${{$ctrl.shippingOption.price.total}} (CAD)</p>
 							<br>
 							<br>
