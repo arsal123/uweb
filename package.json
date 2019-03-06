@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "prodstart": "nohup node server.js &",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,13 @@
     "node-canadapost-international": "0.0.12"
   },
   "devDependencies": {
+    "angular": "^1.7.7",
+    "angular-mocks": "^1.7.7",
+    "angular-ui-router": "^1.0.20",
+    "jasmine-core": "^3.3.0",
+    "karma": "^4.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^2.0.1",
     "nodemon": "^1.11.0"
   }
 }

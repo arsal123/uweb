@@ -79,7 +79,7 @@
          * calcTottalCost function
          * It is using $filter to filter the numbers
          * */
-        let calcTotalCost = (items, shippingOption) => {
+        ctrl.calcTotalCost = (items, shippingOption) => {
             $log.debug(logPrefix + 'calcTotalCost START')
             let cost = 0,
                 currItem;
@@ -116,7 +116,7 @@
             $log.debug(logPrefix + 'updateQuantity(): ');
             $scope.$parent.updateNum(prMainCartService.getItems());
             if (prMainCartService.getShippingOption()) {
-                calcTotalCost($scope.cart.items, prMainCartService.getShippingOption());
+                ctrl.calcTotalCost($scope.cart.items, prMainCartService.getShippingOption());
             }
         }
 
@@ -152,7 +152,7 @@
         }
 
         ctrl.shippingOption = prMainCartService.getShippingOption();
-        calcTotalCost($scope.cart.items, ctrl.shippingOption);
+        ctrl.calcTotalCost($scope.cart.items, ctrl.shippingOption);
 
     }
 
