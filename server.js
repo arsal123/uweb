@@ -87,7 +87,11 @@ app.use(function (req, res, next) {
       if(req.hostname === 'localhost') {
         let finalUrl = 'http://' + req.headers.host + '/login.html';
         console.log('Going to Localhost login: ' + finalUrl);
+        res.redirect(finalUrl);
 
+      } else {
+        let finalUrl = 'https://www.universalmerchandise.com' + '/login.html';
+        console.log('Going to Localhost login: ' + finalUrl);
         res.redirect(finalUrl);
       }
   }
