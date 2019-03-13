@@ -15,8 +15,11 @@
     "body-parser": "^1.17.2",
     "colors": "^1.1.2",
     "express": "^4.15.3",
+    "express-session": "^1.15.3",
     "http-proxy": "^1.16.2",
-    "node-canadapost-international": "0.0.12"
+    "node-canadapost-international": "0.0.12",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "angular": "^1.7.7",
