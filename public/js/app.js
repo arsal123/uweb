@@ -31,8 +31,15 @@ jewelApp.config(function ($stateProvider) {
     component: 'paySuccess' 
   }
 
+  let contactUs = {
+    name: 'contactUs',
+    url: '/contactUs',
+    component: 'contactUs'
+  }
+
   $stateProvider.state(mainState);
   $stateProvider.state(cartState);
+  $stateProvider.state(contactUs);
   $stateProvider.state(paySuccess);
   $stateProvider.state(shippingState);
   $stateProvider.state(shippingOptions);
