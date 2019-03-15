@@ -37,12 +37,19 @@ jewelApp.config(function ($stateProvider) {
     component: 'contactUs'
   }
 
+  let thankyou = {
+    name: 'thankyou',
+    url: '/thankyou',
+    component: 'thankyou'
+  }
+
   $stateProvider.state(mainState);
   $stateProvider.state(cartState);
   $stateProvider.state(contactUs);
   $stateProvider.state(paySuccess);
   $stateProvider.state(shippingState);
   $stateProvider.state(shippingOptions);
+  $stateProvider.state(thankyou);
 });
 
 jewelApp.controller('appController', [

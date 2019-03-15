@@ -10,11 +10,12 @@ var httpProxy = require('http-proxy');
 var bodyParser = require('body-parser'),
     passport = require('passport'),
     session = require('express-session');
+const jsonParser = bodyParser.json();
 const ShippingContr = require('./app/controllers/shippingController');
-
+const emailContr = require('./app/controllers/emailController')
 var apiProxy = httpProxy.createProxyServer();
-const serverOne = 'http://13.58.6.10:3150';
-// const serverOne = 'http://localhost:3150';
+// const serverOne = 'http://13.58.6.10:3150';
+const serverOne = 'http://localhost:3150';
 let setup = function (ssl) {
   if (ssl && ssl.active) {
     return {
@@ -77,7 +78,7 @@ app.all('/auth', passport.authenticate('local-login'), function(req, res){
 
 app.use(function (req, res, next) {
   console.log('Middleware Interrupt: ' + res.statusCode);
-  if (req.isAuthenticated() || req.url.includes('/shipping-calc') ){
+  if (req.isAuthenticated() || req.url.includes('/shipping-calc') || req.url.includes('sendEmail')){
           
           console.log('reqeust is authenticated');
           next();
@@ -100,6 +101,14 @@ app.use(function (req, res, next) {
 
 // For getting rates for the package from Canada Post
 app.get('/shipping-calc', ShippingContr.getRates);
+
+app.post('/sendEmail', jsonParser, function (req, res) {
+  console.log('Here is req body: ' + JSON.stringify(req.body));
+  emailContr.sendEmail(req);
+  // console.log('At server.js at the end of /sendEmail');
+
+  res.redirect('/index2.html#!/thankyou');
+})
 
 let settings = {
   ssl: {
