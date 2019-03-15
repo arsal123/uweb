@@ -1,6 +1,5 @@
 (function (angular) {
     'use strict'
-
     function contactUsController() {
         const logPrefix = 'CONTACTUS_CONTROLLER: ';
 
