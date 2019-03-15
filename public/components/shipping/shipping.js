@@ -66,6 +66,5 @@
         angular.module('jewel').component('shipping', {
             templateUrl: 'components/shipping/shipping.html',
             controller: shippingController
-
         })
     })(window.angular)
