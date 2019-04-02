@@ -2,8 +2,9 @@
 
 var express = require('express');
 var fs = require('fs');
-
+let exec = require('child_process').exec;
 var app = express();
+var sys = require('sys');
 // var path    = require("path");
 var colors = require("colors");
 var httpProxy = require('http-proxy');
@@ -120,5 +121,17 @@ let settings = {
 }
 
 create(settings, app, function(){
-  console.log(("Running at Port " + settings.port).white);
+  console.log(("Running at Port " + settings.port).green);
+
+  // if its local then open a browser window
+  if (!settings.ssl.active) {
+    // exec('open "http://localhost:3002/"', (error, stdout, stderr) => {
+    //   // sys.print('stdout: ' + stdout);
+
+    //   stderr && sys.print('stderr: ' + stderr);
+    //   if (error !== null) {
+    //     console.log('exec error: ' + error);
+    //   }
+    // });
+  }
 })
