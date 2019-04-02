@@ -584,13 +584,13 @@ h2.tittle {
 .grid-arr .grid-arrival figure:hover .grid-img + .grid-img{
   right: 100%;
 }
-.grid-arr .grid-arrival figure > a {
+.grid-arr .grid-arrival figure > div {
   display: block;
   float: left;
   width: 100%;
   z-index: 1;
 }
-.grid-arr .grid-arrival figure > a .grid-img {
+.grid-arr .grid-arrival figure > div .grid-img {
   width: 100%;
   line-height: 0;
   will-change: right;
@@ -598,10 +598,10 @@ h2.tittle {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
-.grid-arr .grid-arrival figure > a .grid-img img {
+.grid-arr .grid-arrival figure > div .grid-img img {
   width: 100%;
 }
-.grid-arr .grid-arrival figure > a .grid-img + .grid-img {
+.grid-arr .grid-arrival figure > div .grid-img + .grid-img {
   position: absolute;
   top: 0;
   right: 0;
@@ -610,7 +610,7 @@ h2.tittle {
   -webkit-transition: right 0.7s cubic-bezier(0.75, 0, 0.175, 1), opacity 0.7s cubic-bezier(0.75, 0, 0.175, 1);
   transition: right 0.7s cubic-bezier(0.75, 0, 0.175, 1), opacity 0.7s cubic-bezier(0.75, 0, 0.175, 1);
 }
-.grid-arr .grid-arrival figure > a .grid-img + .grid-img img {
+.grid-arr .grid-arrival figure > div .grid-img + .grid-img img {
   max-width: none;
 }
 
