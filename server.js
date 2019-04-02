@@ -42,14 +42,14 @@ app.all('/ldb/*', function (req, res) {
   // console.log(colors.bgMagenta('GOING TO DB SERVER with '+req.url));
   // since /db is 3 char so truncating first 3 characters 
   // req.url = req.url.substr(4);
-  console.log(colors.bgMagenta('DB URL: ' + req.url));
+  console.log(colors.bgMagenta('Called DB URL: ' + req.url));
 
   apiProxy.web(req, res, { target: serverOne });
 });
 
 app.get('/item/', function (req, res) {
     //This is just a chrome fix for current version 65 which is eating /ldb/ from the path
-    console.log('Agaya chrome murga in item');
+    console.log('getting items');
 
     apiProxy.web(req, res, { target: serverOne });
 })
