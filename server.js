@@ -15,8 +15,8 @@ const jsonParser = bodyParser.json();
 const ShippingContr = require('./app/controllers/shippingController');
 const emailContr = require('./app/controllers/emailController')
 var apiProxy = httpProxy.createProxyServer();
-// const serverOne = 'http://13.58.6.10:3150';
-const serverOne = 'http://localhost:3150';
+const serverOne = 'http://18.216.163.38:3150';
+// const serverOne = 'http://localhost:3150';
 let setup = function (ssl) {
   if (ssl && ssl.active) {
     return {
@@ -114,8 +114,8 @@ app.post('/sendEmail', jsonParser, function (req, res) {
 let settings = {
   ssl: {
     active: true,
-    key: './public/sslcert/privkey.pem',
-    certificate: './public/sslcert/fullchain.pem' 
+    key: '/etc/letsencrypt/live/www.universalmerchandise.com/privkey.pem',
+    certificate: '/etc/letsencrypt/live/www.universalmerchandise.com/fullchain.pem' 
   },
   port: 3002 //alt it can be port 443 for assl
 }
