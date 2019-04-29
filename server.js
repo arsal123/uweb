@@ -15,8 +15,8 @@ const jsonParser = bodyParser.json();
 const ShippingContr = require('./app/controllers/shippingController');
 const emailContr = require('./app/controllers/emailController')
 var apiProxy = httpProxy.createProxyServer();
-const serverOne = 'http://18.216.163.38:3150';
-// const serverOne = 'http://localhost:3150';
+// const serverOne = 'http://18.216.163.38:3150';
+const serverOne = 'http://localhost:3150';
 let setup = function (ssl) {
   if (ssl && ssl.active) {
     return {
